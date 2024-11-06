@@ -1,13 +1,12 @@
 
 var board;
 var score = 0;
-var maxScore = parseInt(localStorage.getItem("maxScore")) || 0; // Load maxScore from localStorage or initialize to 0
-var rows = 4;
+var maxScore = parseInt(localStorage.getItem("maxScore")) || 0; 
 var columns = 4;
-var gameOver = false; // Flag to manage game-over state
+var gameOver = false; 
 
 window.onload = function() {
-    document.getElementById("maxScore").innerText = maxScore; // Display the maximum score on load
+    document.getElementById("maxScore").innerText = maxScore; 
     setGame();
 }
 
@@ -19,13 +18,11 @@ function setGame() {
         [0, 0, 0, 0]
     ];
 
-    // Reset game status, score, and flag
     document.getElementById("gameStatus").innerText = "";
     score = 0;
     gameOver = false;
     document.getElementById("score").innerText = score;
 
-    // Clear the board display
     document.getElementById("board").innerHTML = "";
 
     for (let r = 0; r < rows; r++) {
@@ -43,7 +40,7 @@ function setGame() {
 
 function updateTile(tile, num) {
     tile.innerText = "";
-    tile.classList.value = ""; // Clear the classList
+    tile.classList.value = ""; 
     tile.classList.add("tile");
     if (num > 0) {
         tile.innerText = num.toString();
@@ -56,7 +53,7 @@ function updateTile(tile, num) {
 }
 
 document.addEventListener('keyup', (e) => {
-    if (gameOver) return; // If the game is over, prevent further moves
+    if (gameOver) return;
 
     let moved = false;
     if (e.code == "ArrowLeft") {
@@ -74,22 +71,21 @@ document.addEventListener('keyup', (e) => {
     }
 
     if (moved) {
-        setTwo(); // Add a new "2" tile after a move
+        setTwo();
         document.getElementById("score").innerText = score;
 
-        // Update max score if current score exceeds it
         if (score > maxScore) {
             maxScore = score;
-            localStorage.setItem("maxScore", maxScore); // Store the new max score in localStorage
-            document.getElementById("maxScore").innerText = maxScore; // Update display
+            localStorage.setItem("maxScore", maxScore);
+            document.getElementById("maxScore").innerText = maxScore;
         }
 
         if (checkGameOver()) {
             document.getElementById("gameStatus").innerText = "Game Lost!";
-            gameStatus.style.fontWeight = "bold"; // Make it bold
+            gameStatus.style.fontWeight = "bold";
             gameStatus.style.color = "red";
-            gameOver = true; // Set game-over flag
-            createNewGameButton(); // Create "New Game" button
+            gameOver = true; 
+            createNewGameButton();
         }
     }
 });
@@ -103,7 +99,7 @@ function checkGameOver() {
             if (r < rows - 1 && board[r][c] === board[r + 1][c]) return false;
         }
     }
-    return true; // Game is over
+    return true; 
 }
 
 function setTwo() {
@@ -133,14 +129,12 @@ function hasEmptyTile() {
     return false;
 }
 
-// Slide functions
-
 function filterZero(row) {
-    return row.filter(num => num != 0); // create new array of all nums != 0
+    return row.filter(num => num != 0); 
 }
 
 function slide(row) {
-    row = filterZero(row); // Filter out zeroes
+    row = filterZero(row); 
     for (let i = 0; i < row.length - 1; i++) {
         if (row[i] == row[i + 1]) {
             row[i] *= 2;
@@ -148,7 +142,7 @@ function slide(row) {
             score += row[i];
         }
     }
-    row = filterZero(row); // Filter again after merging
+    row = filterZero(row);
     while (row.length < columns) {
         row.push(0);
     }
@@ -210,10 +204,10 @@ function createNewGameButton() {
     button.id = "newGameButton";
     button.innerText = "New Game";
     button.onclick = function() {
-        setGame(); // Start a new game
+        setGame(); 
     };
 
-    // Style the button
+    
     button.style.backgroundColor = "green";
     button.style.color = "white";
     button.style.border = "none";
@@ -232,7 +226,7 @@ function createNewGameButton() {
     };
 
     buttonContainer.appendChild(button);
-    document.getElementById("gameStatus").appendChild(buttonContainer); // Add button in new line
+    document.getElementById("gameStatus").appendChild(buttonContainer); 
 }
 
 
