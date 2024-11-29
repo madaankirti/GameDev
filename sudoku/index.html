@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <meta name="theme-color" content="#fff">
+    <title>Sudoku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Sudoku</a>
+            <div class="dark-mode-toggle" id="dark-mode-toggle">
+                <i class="bx bxs-sun"></i>
+                <i class="bx bxs-moon"></i>
+            </div>
+        </div>
+    </nav>
+    <div class="main">
+        <div class="screen active" id="game-screen">
+            <div class="difficulty-selection">
+                <label for="difficulty">Select Difficulty:</label>
+                <select id="difficulty">
+                    <option value="0">Easy</option>
+                    <option value="1">Medium</option>
+                    <option value="2">Hard</option>
+                    <option value="3">Very Hard</option>
+                </select>
+                <button class="btn btn-blue" id="btn-new-game">New Game</button>
+            </div>
+            <div class="game-info">
+                <div class="main-game-info-box main-game-info-time">
+                    Time: <span id="game-time">00:00:00</span>
+                </div>
+                <div class="main-game-info-box main-game-info-mistakes">
+                    Mistakes: <span id="mistakes-count">0</span>/3
+                </div>
+            </div>
+            <div class="main-sudoku-grid">
+                <script>
+                    for (let i = 0; i < 81; i++) {
+                        document.write('<div class="main-grid-cell"></div>');
+                    }
+                </script>
+            </div>
+            <div class="numbers">
+                <div class="number">1</div>
+                <div class="number">2</div>
+                <div class="number">3</div>
+                <div class="number">4</div>
+                <div class="number">5</div>
+                <div class="number">6</div>
+                <div class="number">7</div>
+                <div class="number">8</div>
+                <div class="number">9</div>
+                <div class="delete" id="btn-delete">X</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
