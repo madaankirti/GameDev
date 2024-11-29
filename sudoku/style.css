@@ -1,0 +1,219 @@
+:root {
+    --bg-main: #f0f2f5;
+    --bg-body: #fff;
+    --color-txt: #000;
+    --filled-color: #000;
+    --filled-bg: #caf0f8;
+    --white: #fff;
+    --blue: #00aeef;
+    --red: #e91e63;
+    --black: #000;
+    --nav-size: 70px;
+    --sudoku-cell-size: 50px;
+    --border-radius: 10px;
+    --space-y: 20px;
+    --gap: 1.5px;
+    --font-size: 1.5rem;
+    --font-size-lg: 2rem;
+    --font-size-xl: 3rem;
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+body {
+    font-family: "Potta One", cursive;
+    background-color: var(--bg-body);
+    overflow-x: hidden;
+    user-select: none;
+}
+input {
+    font-family: "Potta One", cursive;
+    border: 2px solid var(--bg-main);
+    color: var(--color-txt);
+}
+input:hover,
+input:focus {
+    border-color: var(--blue);
+}
+nav {
+    background-color: var(--bg-body);
+    color: var(--color-txt);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 5px 2px var(--bg-main);
+    z-index: 99;
+}
+.nav-container {
+    max-width: 1280px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: var(--nav-size);
+}
+.nav-logo {
+    font-size: var(--font-size-lg);
+    color: var(--blue);
+}
+.main {
+    padding-top: var(--nav-size);
+    display: grid;
+    place-items: center;
+}
+.difficulty-selection {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.difficulty-selection label {
+    margin-right: 10px;
+    font-size: var(--font-size);
+}
+
+.difficulty-selection select {
+    height: 40px;
+    border-radius: var(--border-radius);
+    padding: 5px 10px;
+    font-size: var(--font-size);
+    margin-right: 10px;
+}
+.difficulty-selection .btn {
+    height: 40px;
+    padding: 0 20px;
+}
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--space-y);
+}
+.main-game-info-box {
+    background-color: var(--bg-main);
+    color: var(--color-txt);
+    border-radius: var(--border-radius);
+    padding: 10px 20px;
+    font-size: var(--font-size);
+    display: flex;
+    align-items: center;
+}
+.main-game-info-time {
+    font-weight: bold;
+}
+.main-game-info-mistakes {
+    font-weight: bold;
+    color: var(--red);
+}
+.main-sudoku-grid {
+    display: grid;
+    gap: 1.5px 1.5px;
+    grid-template-columns: repeat(9, auto);
+}
+.main-grid-cell {
+    margin:0px;
+    padding:0px;
+    height: var(--sudoku-cell-size);
+    width: var(--sudoku-cell-size);
+    border-radius: var(--border-radius);
+    background-color: var(--bg-main);
+    color: var(--blue);
+    display: grid;
+    place-items: center;
+    font-size: var(--font-size);
+    cursor: pointer;
+}
+.main-grid-cell.filled {
+    background-color: var(--filled-bg);
+    color: var(--filled-color);
+}
+.main-grid-cell.selected {
+    background-color: var(--blue);
+    color: var(--white);
+}
+.main-grid-cell:hover {
+    border: 2px solid var(--blue);
+}
+.numbers {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 3px; 
+    margin-top: var(--space-y);
+}
+.number {
+    height: var(--sudoku-cell-size);
+    width: var(--sudoku-cell-size);
+    border-radius: var(--border-radius);
+    background-color: var(--bg-main);
+    color: var(--color-txt);
+    display: grid;
+    place-items: center;
+    font-size: var(--font-size);
+    cursor: pointer;
+}
+.number:hover {
+    background-color: var(--blue);
+    color: var(--white);
+}
+.delete {
+    grid-column: 5 / 6; 
+    background-color: var(--red);
+    color: var(--white);
+    height: var(--sudoku-cell-size);
+    width: var(--sudoku-cell-size);
+    border-radius: var(--border-radius);
+    display: grid;
+    place-items: center;
+    font-size: var(--font-size);
+    cursor: pointer;
+    margin-top: 10px; 
+    justify-self: center; 
+}
+.delete:hover {
+    background-color: var(--blue);
+    color: var(--white);
+}
+.btn {
+    background-color: var(--bg-main);
+    color: var(--color-txt);
+    border-radius: var(--border-radius);
+    display: grid;
+    place-items: center;
+    transition: width 0.3s ease-in-out;
+    overflow: hidden;
+    font-size: var(--font-size);
+    cursor: pointer;
+}
+.btn-blue {
+    background-color: var(--blue);
+    color: var(--white);
+}
+@media only screen and (max-width: 800px) {
+    :root {
+        --nav-size: 50px;
+        --sudoku-cell-size: 30px;
+        --border-radius: 5px;
+        --space-y: 10px;
+        --gap: 2px;
+        --font-size: 1rem;
+        --font-size-lg: 1.5rem;
+        --font-size-xl: 2rem;
+    }
+    .difficulty-selection select,
+    .difficulty-selection .btn {
+        height: 30px;
+        font-size: var(--font-size);
+    }
+    .main-grid-cell.hover {
+        border-width: 2px;
+    }
+    .screen {
+        min-width: unset;
+    }
+    .main {
+        height: 100vh;
+    }
+}
